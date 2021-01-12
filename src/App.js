@@ -1,27 +1,20 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import JobTable from './JobTable.jsx';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function App() {
-  let jobs = [{name: "Dali", desc: "Dev dev dev", hourly: 13},{name: "Foco Dishwasher", desc: "wash wash wash", hourly: 10},{name: "Tutor", desc: "teach teach teach", hourly: 12}]
   return (
     <div className="App">
       <h1>Dartmouth On-Campus Jobs</h1>
-      <table>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Pay (hourly)</th>
-          </tr>
-        {jobs.map((job)=>{
-          return(
-            <tr>
-              <td>{job.name}</td>
-              <td>{job.desc}</td>
-              <td>${job.hourly}</td>
-            </tr>
-          );
-        })}
-      </table>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col>
+            <JobTable/>
+          </Col>
+        </Row>
+      </Container>
+      
     </div>
   );
 }
