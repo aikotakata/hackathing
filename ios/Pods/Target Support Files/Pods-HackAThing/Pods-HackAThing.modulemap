@@ -1,6 +1,0 @@
-module Pods_HackAThing {
-  umbrella header "Pods-HackAThing-umbrella.h"
-
-  export *
-  module * { export * }
-}
