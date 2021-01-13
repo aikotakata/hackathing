@@ -14,10 +14,12 @@ export default class JobTable extends Component {
         this.jobsFiltered = this.jobsMaster;
     }
 
+
+    
     componentDidMount() {
         this.filterJobs();
     }
-
+    
     filterJobs(){
         this.jobsFiltered = this.jobsMaster;
 
@@ -53,6 +55,7 @@ export default class JobTable extends Component {
         
     }
 
+
     render() {
         return(
             <Table striped bordered hover size="md">
@@ -61,6 +64,7 @@ export default class JobTable extends Component {
                         <th onClick={()=>{this.toggleOrder('name');}}>Name <FontAwesomeIcon icon={this.state.sortKey==='name'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/> </th>
                         <th>Description</th>
                         <th onClick={()=>{this.toggleOrder('hourly');}}>Pay (hourly) <FontAwesomeIcon icon={this.state.sortKey==='hourly'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/></th>
+                        <th onClick={()=>{this.toggleOrder('date');}}>Date Posted <FontAwesomeIcon icon={this.state.sortKey==='date'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,6 +74,7 @@ export default class JobTable extends Component {
                         <td>{job.name}</td>
                         <td>{job.description}</td>
                         <td>${job.hourly}</td>
+                        <td>{job.date}</td>
                         </tr>
                     );
                     })}
