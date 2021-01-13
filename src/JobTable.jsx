@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp, faArrowDown, faCircle } from '@fortawesome/free-solid-svg-icons'
+import { Modal } from 'bootstrap';
+//import Modal from './Modal.js';
+//import ModalHeader from 'react-bootstrap/esm/ModalHeader';
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalFooter from "react-bootstrap/ModalFooter";
+import ModalTitle from "react-bootstrap/ModalTitle";
 
 export default class JobTable extends Component {
     constructor(props){
@@ -9,9 +16,20 @@ export default class JobTable extends Component {
         this.state = {
             sortKey: 'hourly',
             sortOrder: 'asc',
+            show: false,
         }
         this.jobsMaster = require('./jobs.json');
         this.jobsFiltered = this.jobsMaster;
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+    }
+
+    showModal = () => {
+        this.setState({show:true});
+    }
+
+    hideModal = () => {
+        this.setState({show:false})
     }
 
 
@@ -43,6 +61,7 @@ export default class JobTable extends Component {
         });
     }
 
+
     toggleOrder(key){
         this.setState({
             sortOrder: this.state.sortOrder==='desc' ? 'asc':'desc',
@@ -56,7 +75,10 @@ export default class JobTable extends Component {
     }
 
 
+
+
     render() {
+ 
         return(
             <Table striped bordered hover size="md">
                 <thead>
@@ -71,7 +93,15 @@ export default class JobTable extends Component {
                     {this.jobsFiltered.map((job, i)=>{
                     return(
                         <tr key={i}>
-                        <td>{job.name}</td>
+                        <td onClick={this.showModal}>{job.name}</td>
+                        <Modal show={true}>
+                            <ModalHeader closeButton>
+                                <ModalTitle>Job Details</ModalTitle>
+                            </ModalHeader>
+                            <ModalBody>
+                                Contact: {job.contact} Email: {job.email}
+                            </ModalBody>
+                        </Modal>
                         <td>{job.description}</td>
                         <td>${job.hourly}</td>
                         <td>{job.date}</td>
