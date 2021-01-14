@@ -2,13 +2,40 @@ import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp, faArrowDown, faCircle } from '@fortawesome/free-solid-svg-icons'
-import { Modal } from 'bootstrap';
+//import { Modal } from 'bootstrap';
 //import Modal from './Modal.js';
 //import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import ModalBody from "react-bootstrap/ModalBody";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import ModalTitle from "react-bootstrap/ModalTitle";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Modal from 'react-bootstrap/Modal'
+import { useEffect, useState } from "react";
+import { Button} from 'react-bootstrap';
+
+function PopUp(contact, email){
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return(
+        <>
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Contact: {contact} /n Email: {email} </Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+                Close
+            </Button>
+            </Modal.Footer>
+        </Modal>
+        </>
+    );
+};
+
 
 export default class JobTable extends Component {
     constructor(props){
@@ -16,22 +43,12 @@ export default class JobTable extends Component {
         this.state = {
             sortKey: 'hourly',
             sortOrder: 'asc',
-            show: false,
+            show_yes: false,
         }
         this.jobsMaster = require('./jobs.json');
         this.jobsFiltered = this.jobsMaster;
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
+        
     }
-
-    showModal = () => {
-        this.setState({show:true});
-    }
-
-    hideModal = () => {
-        this.setState({show:false})
-    }
-
 
     
     componentDidMount() {
@@ -93,18 +110,10 @@ export default class JobTable extends Component {
                     {this.jobsFiltered.map((job, i)=>{
                     return(
                         <tr key={i}>
-                        <td onClick={this.showModal}>{job.name}</td>
-                        <Modal show={true}>
-                            <ModalHeader closeButton>
-                                <ModalTitle>Job Details</ModalTitle>
-                            </ModalHeader>
-                            <ModalBody>
-                                Contact: {job.contact} Email: {job.email}
-                            </ModalBody>
-                        </Modal>
-                        <td>{job.description}</td>
-                        <td>${job.hourly}</td>
-                        <td>{job.date}</td>
+                            <td onClick={()=>{PopUp(job.contact, job.email);}}>{job.name}</td>
+                            <td>{job.description}</td>
+                            <td>${job.hourly}</td>
+                            <td>{job.date}</td>
                         </tr>
                     );
                     })}
