@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUp, faArrowDown, faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUp, faArrowDown, faGripLinesVertical } from '@fortawesome/free-solid-svg-icons'
 //import { Modal } from 'bootstrap';
 //import Modal from './Modal.js';
 //import ModalHeader from 'react-bootstrap/esm/ModalHeader';
@@ -14,27 +14,6 @@ import Modal from 'react-bootstrap/Modal'
 import { useEffect, useState } from "react";
 import { Button} from 'react-bootstrap';
 
-function PopUp(contact, email){
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    return(
-        <>
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Contact: {contact} /n Email: {email} </Modal.Body>
-            <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-                Close
-            </Button>
-            </Modal.Footer>
-        </Modal>
-        </>
-    );
-};
 
 
 export default class JobTable extends Component {
@@ -43,7 +22,8 @@ export default class JobTable extends Component {
         this.state = {
             sortKey: 'hourly',
             sortOrder: 'asc',
-            show_yes: false,
+            modalVisible: false,
+            modalJob: {}
         }
         this.jobsMaster = require('./jobs.json');
         this.jobsFiltered = this.jobsMaster;
@@ -79,7 +59,7 @@ export default class JobTable extends Component {
     }
 
 
-    toggleOrder(key){
+    toggleOrder = (key) => {
         this.setState({
             sortOrder: this.state.sortOrder==='desc' ? 'asc':'desc',
             sortKey: key
@@ -91,26 +71,55 @@ export default class JobTable extends Component {
         
     }
 
+    toggleModal = (job={}) => {
+        this.setState({
+            modalVisible: !this.state.modalVisible,
+            modalJob: job
+        });
+    }
+
 
 
 
     render() {
- 
+        
         return(
+            <>
+            <Modal show={this.state.modalVisible} onHide={this.toggleModal}>
+                <Modal.Header closeButton>
+                <Modal.Title>{this.state.modalJob.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h5>
+                        {this.state.modalJob.description}
+                    </h5>
+                    <p>
+                        Contact: {this.state.modalJob.contact}
+                    </p>
+                    <p>
+                        Email: {this.state.modalJob.email}
+                    </p>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={this.toggleModal}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
             <Table striped bordered hover size="md">
                 <thead>
                     <tr>
-                        <th onClick={()=>{this.toggleOrder('name');}}>Name <FontAwesomeIcon size="md" icon={this.state.sortKey==='name'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/> </th>
+                        <th onClick={()=>{this.toggleOrder('name');}}>Name <FontAwesomeIcon size="md" icon={this.state.sortKey==='name'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faGripLinesVertical}/> </th>
                         <th>Description</th>
-                        <th onClick={()=>{this.toggleOrder('hourly');}}>Pay (hourly) <FontAwesomeIcon icon={this.state.sortKey==='hourly'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/></th>
-                        <th onClick={()=>{this.toggleOrder('date');}}>Date Posted <FontAwesomeIcon icon={this.state.sortKey==='date'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/></th>
+                        <th onClick={()=>{this.toggleOrder('hourly');}}>Pay (hourly) <FontAwesomeIcon icon={this.state.sortKey==='hourly'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faGripLinesVertical}/></th>
+                        <th onClick={()=>{this.toggleOrder('date');}}>Date Posted <FontAwesomeIcon icon={this.state.sortKey==='date'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faGripLinesVertical}/></th>
                     </tr>
                 </thead>
                 <tbody>
                     {this.jobsFiltered.map((job, i)=>{
                     return(
-                        <tr key={i}>
-                            <td onClick={()=>{PopUp(job.contact, job.email);}}>{job.name}</td>
+                        <tr key={i} onClick={()=>{this.toggleModal(job)}}>
+                            <td>{job.name}</td>
                             <td>{job.description}</td>
                             <td>${job.hourly}</td>
                             <td>{job.date}</td>
@@ -119,6 +128,7 @@ export default class JobTable extends Component {
                     })}
                 </tbody>
             </Table>
+            </>
         );
     }
 }
