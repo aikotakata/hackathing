@@ -58,9 +58,9 @@ export default class JobTable extends Component {
             <Table striped bordered hover size="md">
                 <thead>
                     <tr>
-                        <th onClick={()=>{this.toggleOrder('name');}}>Name <FontAwesomeIcon icon={this.state.sortKey==='name'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/> </th>
+                        <th onClick={()=>{this.toggleOrder('name');}}>Name <FontAwesomeIcon size="md" icon={this.state.sortKey==='name'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/> </th>
                         <th>Description</th>
-                        <th onClick={()=>{this.toggleOrder('hourly');}}>Pay (hourly) <FontAwesomeIcon icon={this.state.sortKey==='hourly'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/></th>
+                        <th onClick={()=>{this.toggleOrder('hourly');}}>Pay (hourly) <FontAwesomeIcon size="md" icon={this.state.sortKey==='hourly'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faCircle}/></th>
                     </tr>
                 </thead>
                 <tbody>
