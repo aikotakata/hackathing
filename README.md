@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# Hack a Thing
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Dartmouth On-Campus Jobs Website
 
-## Available Scripts
+### Henry Foster and Aiko Takata
 
-In the project directory, you can run:
+### Website Purpose
 
-### `yarn start`
+The Dartmouth On-Campus Jobs Website is a centralized place for people to view on-campus jobs. At many schools, including Dartmouth, finding an on-campus job can be confusing. Our website aims to make connecting people with on-campus jobs easier.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Website Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The website features a table that shows all of the currently available jobs on campus. Each row represents a job. The columns have information about the job. The columns are job title, description, pay, and date posted. The table allows the user to click on the top of the column to change how the list of jobs is sorted. The list can be sorted by job title (alphabetical), pay, and date posted in ascending or descending order. Ascending or descending is noted with an up or down arrow. 
 
-### `yarn test`
+For more information about the job, the user can click on the row with the job. A window will appear with a contact and email address for the job.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Details
 
-### `yarn build`
+The jobs are all stored in a json file. We created the table in a .jsx file and referenced the information about the jobs from the json file. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### How to Test
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Do yarn start and view the webpage. Click each of the columns to see how you can sort the list of jobs. Click on a row to see more information about the job.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

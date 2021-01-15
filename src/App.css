@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-family: serif;
+  background-color: white;
 }
 
 .App-logo {
@@ -21,12 +23,23 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(40, 99, 7);
 }
 
 .App-link {
-  color: #61dafb;
+  color: #164e10;
 }
+
+.h1 {
+  color:rgb(79, 160, 32)
+}
+
+.modal1 .modal-content {
+  background-color: rgb(255, 255, 255);
+  color: rgb(10, 46, 21); 
+  font-family: serif;
+}
+
 
 @keyframes App-logo-spin {
   from {
