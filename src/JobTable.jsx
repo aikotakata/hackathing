@@ -85,7 +85,7 @@ export default class JobTable extends Component {
         
         return(
             <>
-            <Modal show={this.state.modalVisible} onHide={this.toggleModal}>
+            <Modal className = "modal1" show={this.state.modalVisible} onHide={this.toggleModal}>
                 <Modal.Header closeButton>
                 <Modal.Title>{this.state.modalJob.name}</Modal.Title>
                 </Modal.Header>
@@ -106,8 +106,8 @@ export default class JobTable extends Component {
                 </Button>
                 </Modal.Footer>
             </Modal>
-            <Table striped bordered hover size="md">
-                <thead>
+            <Table striped bordered hover size="md" class = "table table-hover table-striped">
+                <thead class="thead-dark">
                     <tr>
                         <th onClick={()=>{this.toggleOrder('name');}}>Name <FontAwesomeIcon size="md" icon={this.state.sortKey==='name'? this.state.sortOrder==='asc'? faArrowDown: faArrowUp : faGripLinesVertical}/> </th>
                         <th>Description</th>
@@ -118,7 +118,7 @@ export default class JobTable extends Component {
                 <tbody>
                     {this.jobsFiltered.map((job, i)=>{
                     return(
-                        <tr key={i} onClick={()=>{this.toggleModal(job)}}>
+                        <tr class = "success" key={i} onClick={()=>{this.toggleModal(job)}}>
                             <td>{job.name}</td>
                             <td>{job.description}</td>
                             <td>${job.hourly}</td>

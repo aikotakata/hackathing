@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 function App() {
   return (
     <div className="App">
-      <h1>Dartmouth On-Campus Jobs</h1>
+      <h1 id = "h1">Dartmouth On-Campus Jobs </h1>
       <Container>
         <Row className="justify-content-md-center">
           <Col>
