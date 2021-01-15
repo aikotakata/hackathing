@@ -18,7 +18,9 @@ For more information about the job, the user can click on the row with the job. 
 
 The jobs are all stored in a json file. We created the table in a .jsx file and referenced the information about the jobs from the json file. 
 
+We changed the appearance of the website in a few ways. We changed the font and colors. In addition, we modified the table. The table is striped in color (alternating), highlights the row when hovered over, and has a dark inverted color heading. For the sort of the table, there are icons to indicate which column the table has been sorted by. 
+
 ### How to Test
 
-Do yarn start and view the webpage. Click each of the columns to see how you can sort the list of jobs. Click on a row to see more information about the job.
+Do yarn start to view the webpage. Click each of the columns to see how you can sort the list of jobs. Click on a row to see more information about the job.
 
